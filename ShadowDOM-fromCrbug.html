@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
+		<base href="/" />
+		<meta name="title" content="conditional UI | DOM vs Shadow DOM" />
+		<title>conditional UI | DOM vs Shadow DOM</title>
+
+		<script>
+			navigator.credentials.get({
+				publicKey: {
+					challenge: new Uint8Array([1, 2, 3, 4])
+				},
+				mediation: 'conditional'
+			});
+
+			class UiForm extends HTMLElement {
+				constructor() {
+					super();
+					this.attachShadow({ mode: 'open' });
+				}
+
+				connectedCallback() {
+					this.render();
+				}
+
+				render() {
+					const template = document.createElement('template');
+					template.innerHTML = `
+          <form>
+			      <h1>Shadow DOM</h1>
+			      <p>From is inside a shadow DOM:</p>
+			      <input name="email" type="text" placeholder="DOM" autocomplete="webauthn" />
+            <button type="submit">Click</button>
+		      </form>
+          `;
+					this.shadowRoot.appendChild(template.content.cloneNode(true));
+				}
+			}
+
+			window.customElements.define('form-component', UiForm);
+		</script>
+	</head>
+
+	<body>
+		<form>
+			<h1>DOM</h1>
+			<p>Form is in the DOM:</p>
+			<input name="email" type="text" placeholder="DOM" autocomplete="webauthn" />
+			<button type="submit">Click</button>
+		</form>
+		<form-component></form-component>
+	</body>
+</html>
