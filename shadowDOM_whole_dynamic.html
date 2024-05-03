@@ -10,7 +10,6 @@
         form.appendChild(un);
         const pw = document.createElement("input");
         pw.type="password";
-        pw.id="password";
         form.appendChild(pw);
 	const submit = document.createElement("input");
 	submit.type="submit";
@@ -19,9 +18,10 @@
 	}
 </script>
 
-<body onload="addShadowForm();">
+<body>
+    <button id='add' onclick="addShadowForm();">Add a form<button>
     <h1>ShadyStuff Going On Below</h1>
     
     <div id="host"></div>
     <span>I'm not in the shadow DOM</span>
-    <body>
+<body>
