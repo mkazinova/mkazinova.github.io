@@ -3,25 +3,35 @@
         const host = document.querySelector("#host");
         const shadow = host.attachShadow({ mode: "open" });
         const form = document.createElement("form");
+        form.id = "ShadyForm";
         form.name = "ShadyForm";
-	form.action = "done.html";
+        form.action = "done.html";
         const un = document.createElement("input");
         un.type = "text";
         form.appendChild(un);
         const pw = document.createElement("input");
+        pw.id = "pw1";
         pw.type="password";
-        pw.id="password";
         form.appendChild(pw);
-	const submit = document.createElement("input");
-	submit.type="submit";
-	form.appendChild(submit);
+        const submit = document.createElement("input");
+        submit.type="submit";
+        form.appendChild(submit);
         shadow.appendChild(form);
 	}
+    
+    function addShadowInput() {
+        const host = document.getElementById("host");
+        const form = host.shadowRoot.getElementById("ShadyForm");
+        const pw = document.createElement("input");
+        pw.id = "pw2";
+        pw.type="password";
+        form.appendChild(pw);
+    }
 </script>
 
 <body onload="addShadowForm();">
+    <button id='addInput' onclick="addShadowInput();">Add an input<button>
     <h1>ShadyStuff Going On Below</h1>
-    
     <div id="host"></div>
-    <span>I'm not in the shadow DOM</span>
-    <body>
+
+<body>

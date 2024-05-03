@@ -1,0 +1,21 @@
+<script>
+    function addForm() {
+        const form = document.createElement("form");
+        form.name = "NormalForm";
+        form.action = "done.html";
+        const un = document.createElement("input");
+        un.type = "text";
+        form.appendChild(un);
+        const pw = document.createElement("input");
+        pw.type="password";
+        form.appendChild(pw);
+        const submit = document.createElement("input");
+        submit.type="submit";
+        form.appendChild(submit);
+        document.getElementsByTagName("body")[0].appendChild(form);
+    }
+</script>
+
+<body>
+    <button id='addform' onclick="addForm();"></button>
+<body>
