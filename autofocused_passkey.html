@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-	<body>
-		<form>
-			<h1>AUTOFOCUSED PASSKEY</h1>
-			<input name="email" type="text" autocomplete="username webauthn" autofocus/>
-			<button type="submit">Click</button>
-		</form>
-	</body>
-</html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
+        <base href="/" />
+        <meta name="title" />
+        <title>Autofocused passkey</title>
 
+        <script>
+            navigator.credentials.get({
+                publicKey: {
+                    challenge: new Uint8Array([1, 2, 3, 4])
+                },
+                mediation: 'conditional'
+            });
+
+
+        </script>
+    </head>
+
+    <body>
+        <form>
+            <input name="email" type="text" autocomplete="webauthn" autofocus/>
+            <button type="submit">Click</button>
+        </form>
+
+    </body>
+</html>
